@@ -1,44 +1,54 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, StyleSheet, View, ImageBackground } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  View,
+  ImageBackground,
+  ImageSourcePropType,
+} from 'react-native';
 import StyledButton from '../StyledButton';
 import styles from './styles';
 
 type CarItemProps = {
-  backgroundImage: string;
-  carName: string;
-  carPrice: string;
+  name: string;
+  tagLine: string;
+  tagLineCTA?: string;
+  image: ImageSourcePropType;
 };
 
 const CarItem: React.FC<CarItemProps> = ({
-  backgroundImage,
-  carName,
-  carPrice,
+  name,
+  tagLine,
+  image,
+  tagLineCTA,
 }) => {
   return (
     <View style={styles.carContainer}>
-      <ImageBackground
-        source={require('../../../assets/images/Model3.jpeg')}
-        style={styles.image}
-      />
+      <ImageBackground source={image} style={styles.image} />
       <View style={styles.titles}>
-        <Text style={styles.title}>{carName}</Text>
-        <Text style={styles.subtitle}>Starting at ${carPrice}</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subtitle}>
+          {tagLine}&nbsp;
+          <Text style={styles.subTitleCTA}>{tagLineCTA}</Text>
+        </Text>
       </View>
 
-      <StyledButton
-        type="primary"
-        text="Custom Order"
-        onPress={() => {
-          console.warn('Custom Order');
-        }}
-      />
-      <StyledButton
-        type="secondary"
-        text="Existing Inventory"
-        onPress={() => {
-          console.warn('Existing Inventory');
-        }}
-      />
+      <View style={styles.buttonsContainer}>
+        <StyledButton
+          type="primary"
+          text="Custom Order"
+          onPress={() => {
+            console.warn('Custom Order');
+          }}
+        />
+        <StyledButton
+          type="secondary"
+          text="Existing Inventory"
+          onPress={() => {
+            console.warn('Existing Inventory');
+          }}
+        />
+      </View>
     </View>
   );
 };
