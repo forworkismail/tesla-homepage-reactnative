@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, StyleSheet, View, ImageBackground } from 'react-native';
-import styles from './CarItem-style';
+import StyledButton from '../StyledButton';
+import styles from './styles';
 
 type CarItemProps = {
   backgroundImage: string;
@@ -8,7 +9,7 @@ type CarItemProps = {
   carPrice: string;
 };
 
-const CarItemComponent: React.FC<CarItemProps> = ({
+const CarItem: React.FC<CarItemProps> = ({
   backgroundImage,
   carName,
   carPrice,
@@ -23,8 +24,23 @@ const CarItemComponent: React.FC<CarItemProps> = ({
         <Text style={styles.title}>{carName}</Text>
         <Text style={styles.subtitle}>Starting at ${carPrice}</Text>
       </View>
+
+      <StyledButton
+        type="primary"
+        text="Custom Order"
+        onPress={() => {
+          console.warn('Custom Order');
+        }}
+      />
+      <StyledButton
+        type="secondary"
+        text="Existing Inventory"
+        onPress={() => {
+          console.warn('Existing Inventory');
+        }}
+      />
     </View>
   );
 };
 
-export default CarItemComponent;
+export default CarItem;
